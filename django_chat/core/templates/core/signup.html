@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+sign up
+{% endblock %}
+
+{% block content %}
+<div class="p-4 lg:p-8">
+    <form method="POST" action="." class="lg:w-1/4 px-4 mx-auto">
+        <h1 class="text-base font-bold text-gray-900 py-4">regístrate!</h1>
+        {% csrf_token %}
+        <div class="mb-5">
+            <label for="username" class="text-gray-900">nombre de usuario</label>
+            <input type="text" name="username" class="w-full mt-2 px-4 py-2 border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+        <div class="mb-5">
+            <label for="password1" class="text-gray-900">contraseña</label>
+            <input type="password" name="password1" class="w-full mt-2 px-4 py-2 border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+        <div class="mb-5">
+            <label for="password2" class="text-gray-900">repite contraseña</label>
+            <input type="password" name="password2" class="w-full mt-2 px-4 py-2 border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="mb-5 p-4 rounded-xl bg-red-300 text-sm text-gray-900">
+                    <p>{{ field.name }} > {{ error|escape }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <button class="w-full px-5 py-3 rounded-xl text-white bg-blue-900 hover:bg-blue-700">inicia la aventura!</button>
+    </form>
+</div>
+{% endblock %}
